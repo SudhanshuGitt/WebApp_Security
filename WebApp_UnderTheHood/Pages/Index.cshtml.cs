@@ -14,7 +14,7 @@ namespace WebApp_UnderTheHood.Pages
 
         public void OnGet()
         {
-
+            //base.User;
         }
     }
 }
