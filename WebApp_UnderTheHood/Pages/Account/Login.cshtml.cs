@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
@@ -27,6 +26,10 @@ namespace WebApp_UnderTheHood.Pages.Account
                 {
                     new Claim(ClaimTypes.Name, Credential.UserName),
                     new Claim(ClaimTypes.Email, "admin@admin.com"),
+                    new Claim("Department", "HR"),
+                    new Claim("Admin","true"),
+                    new Claim("Manager","true"),
+                    new Claim("EmploymentDate","2024-08-01")
 
                 };
 
