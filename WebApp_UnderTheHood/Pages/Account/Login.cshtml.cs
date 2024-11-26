@@ -43,7 +43,12 @@ namespace WebApp_UnderTheHood.Pages.Account
 
                 // serailize the SC into string and encrpyt that string save that as cookie in the http context
                 // it talks to Iauthentication service interface 
-                await HttpContext.SignInAsync("MyCookieAuth", principal);
+
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = Credential.RememberMe,
+                };
+                await HttpContext.SignInAsync("MyCookieAuth", principal, authProperties);
 
                 // HttpContext.SignInAsync uses authenctication handler which provided through IAuthentication Interface
 
@@ -64,5 +69,7 @@ namespace WebApp_UnderTheHood.Pages.Account
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; } = string.Empty;
+        [Display(Name = "Remember Me")]
+        public bool RememberMe { get; set; }
     }
 }

@@ -20,6 +20,13 @@ builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", opt
     // we can chaange the location of login page then we have to provide the login path in Authentication
     //options.LoginPath = "/Account1/Login";
     options.LoginPath = "/Account/Login";
+    // browser session is interaction between the browser and the server
+    // browser session last life time of the browser
+    // if Browswe life time > Cookie Lifetime cookie will expire whrn the time come
+    // if BLT < CLT the cookie is gone
+    // we as a devleoper can set cookie as a persistent cookie it will survie browser closing
+    // persistent cookie will always have the lifetime as set to cookie
+    options.ExpireTimeSpan = TimeSpan.FromSeconds(200);
 });
 
 // inorder to add policy we need to configure the authorization middleware
