@@ -49,6 +49,18 @@ builder.Services.AddHttpClient("OurWebAPI", client =>
     client.BaseAddress = new Uri("https://localhost:7107/");
 });
 
+// Configuring session middleware
+// session is going to be sustained by cokkie
+builder.Services.AddSession(options =>
+{
+    //  we want our cookie to be very safe, secure, we don't want JavaScript or any kind of script
+    options.Cookie.HttpOnly = true;
+    // timeout period if session is idle for certain period we want session to timeout
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
+    // since the session is affecting our functionality.we're going to set it to essential.
+    options.Cookie.IsEssential = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -74,6 +86,8 @@ app.UseRouting();
 // in order to decrypt deserlize and authenticate against which cookie
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapRazorPages();
 
