@@ -5,7 +5,10 @@ namespace SecurtiyWeb_API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
+    // denying anonymous identity.
+    //[Authorize]
+    // only allow admin
+    [Authorize(policy: "AdminOnly")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
