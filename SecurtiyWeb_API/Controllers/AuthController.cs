@@ -43,7 +43,7 @@ namespace SecurtiyWeb_API.Controllers
 
                 return Ok(new
                 {
-                    accees_token = CreateToken(claims, expiresAt),
+                    access_token = CreateToken(claims, expiresAt),
                     expires_at = expiresAt
                 });
 
